@@ -8,21 +8,27 @@ import com.tothenew.sharda.Ecommerce.Exception.TokenNotFoundException;
 import com.tothenew.sharda.Ecommerce.Registration.Token.*;
 import com.tothenew.sharda.Ecommerce.User.*;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class RegistrationService {
 
-    private final EmailValidator emailValidator;
-    private final UserService userService;
-    private final ConfirmationTokenService confirmationTokenService;
-    private final ConfirmationTokenRepository confirmationTokenRepository;
-    private final EmailSender emailSender;
-    private final UserRepository userRepository;
+    @Autowired
+    private  EmailValidator emailValidator;
+    @Autowired
+    private  UserService userService;
+    @Autowired
+    private  ConfirmationTokenService confirmationTokenService;
+    @Autowired
+    private  ConfirmationTokenRepository confirmationTokenRepository;
+    @Autowired
+    private  EmailSender emailSender;
+    @Autowired
+    private  UserRepository userRepository;
 
     public String registerAsCustomer(RegistrationRequestCustomer request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());
